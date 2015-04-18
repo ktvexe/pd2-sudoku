@@ -9,7 +9,7 @@ Sudoku::Sudoku(void){
 	map.resize(144);
 	xlable.resize(12);
 	ylable.resize(12);
-	gridlable.resize(9);
+	gridlable.resize(16);
 }
 
 void Sudoku::ReadIn(void){
@@ -174,7 +174,7 @@ int Sudoku::solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<
 			return 1;//good answer output
 		}
 
-		if(check2==0){
+/*		if(check2==0){
 			if( solveMulti(Test,X,Y,G) ){
 				return 1;
 			}
@@ -182,7 +182,7 @@ int Sudoku::solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<
 				return 0;
 			}
 		}
-	}
+*/	}
 }
 
 
