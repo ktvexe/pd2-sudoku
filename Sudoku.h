@@ -31,9 +31,9 @@ class Sudoku{
 		int solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<Pixel> G);
 		int solveMulti(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<Pixel> G);
 
-		vector<Pixel> xLable;
-		vector<Pixel> yLable;
-		vector<Pixel> gridLable;
+		vector<Pixel> xlable;
+		vector<Pixel> ylable;
+		vector<Pixel> gridlable;
 		vector<int> map;
 		vector< vector<int> > multiAnswer;
 
