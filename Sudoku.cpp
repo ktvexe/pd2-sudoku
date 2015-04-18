@@ -1,4 +1,5 @@
 #include"Sudoku.h"
+#include <iomanip>
 
 Sudoku::Sudoku(void){
 	map.clear();
@@ -22,20 +23,46 @@ void Sudoku::ReadIn(void){
 void Sudoku::GiveQuestion(void){
 	
 	srand( time(NULL) );
-	int index;
-	index=rand()%1;
-	for(int j=0;j<12;++j){
-		for(int i=0;i<12;++i){
-			cout<<Map[index][j][i]<<" ";
-			if(Map[index][j][i] != -1)
-				cout<<" ";
+	for(int i=0;i<12;++i){
+		for(int j=0;j<12;j++){
+			map[j+12*i]=Map[i][j];
+		}
+	}
+	do{
+//	srand( time(NULL) );
+	int index,orivalue;
+	index=rand()%144;
+	cout<<"index="<<index<<endl;
+	if(map[index]>0){
+		orivalue = map[index];
+		map[index]= 0;
+		if(!initialCheckUnity()){
+			cout<<"無解"<<endl;
+			map[index]=orivalue;
+			break;
+		}
+		getAnswer();
+		if(getCountSolution()!=1){
+			cout<<"非唯一"<<endl;
+			map[index]=orivalue;
+			break;
+		}
+	}
+	multiAnswer.clear();
+	}while(1);
+	for(int i=0;i<12;++i){
+		for(int j=0;j<12;++j){
+			cout<<setw(3)<<map[j+i*12];
+//			if(map[j+i*12] != -1)
+//				cout<<" ";
 		}
 		cout<<endl;
 	}
+
 }
 
 void Sudoku::Solve(void){
-	if( ! initialCheckUnity() ){			//若非唯一
+	if( ! initialCheckUnity() ){			//若無解
 		cout<<"init"<<endl;
 		cout<<getCountSolution()<<endl;
 		return;
@@ -265,9 +292,9 @@ void Sudoku::outOriginMap(void){
 }
 */
 
-const int Sudoku::Map[1][12][12]=
+const int Sudoku::Map[12][12]=
 {
-	{
+/*	{
 	{ 4,2,6,8,7,3,9,5,1,-1,-1,-1},
 	{ 0,0,3,9,5,0,6,0,4,-1,-1,-1},
 	{ 9,0,1,6,2,4,8,0,0,-1,-1,-1},
@@ -280,5 +307,19 @@ const int Sudoku::Map[1][12][12]=
 	{ 3,1,2,-1,-1,-1,7,4,0,5,0,9},
 	{ 7,4,8,-1,-1,-1,0,6,9,3,0,2},
 	{ 0,6,0,-1,-1,-1,3,1,0,7,0,8},
-	}																
+	}
+*/	
+	{ 4,2,6,8,7,3,9,5,1,-1,-1,-1},
+	{ 8,7,3,9,5,1,6,2,4,-1,-1,-1},
+	{ 9,5,1,6,2,4,8,7,3,-1,-1,-1},
+	{ -1,-1,-1,1,3,2,4,8,7,9,5,6},
+	{ -1,-1,-1,7,8,5,1,9,6,4,2,3},
+	{ -1,-1,-1,4,9,6,2,3,5,8,7,1},
+	{ 1,3,7,2,4,8,-1,-1,-1,6,9,5},
+	{ 2,8,4,5,6,9,-1,-1,-1,1,3,7},
+	{ 6,9,5,3,1,7,-1,-1,-1,2,8,4},
+	{ 3,1,2,-1,-1,-1,7,4,8,5,6,9},
+	{ 7,4,8,-1,-1,-1,5,6,9,3,1,2},
+	{ 5,6,9,-1,-1,-1,3,1,2,7,4,8},
+	
 };
