@@ -63,9 +63,11 @@ void Sudoku::outputans(void){
 
 int Sudoku::initialCheckUnity(void){
 
-	for(int i=0;i<9;++i){
+	for(int i=0;i<12;++i){
 		ylable[i].contain=0;
 		xlable[i].contain=0;
+	}
+	for(int i=0;i<16;++i){
 		gridlable[i].contain=0;
 	}
 
@@ -83,6 +85,7 @@ int Sudoku::initialCheckUnity(void){
 		t.push_back(0);
 		it=adjacent_find(t.begin(),t.end());
 		if( it != t.end() ){
+			cout<<"ylabel"<<endl;
 			return 0;
 		}
 	}
@@ -98,11 +101,12 @@ int Sudoku::initialCheckUnity(void){
 		t.push_back(0);
 		it=adjacent_find(t.begin(),t.end());
 		if( it != t.end() ){
+			cout<<"xlabel"<<endl;
 			return 0;
 		}
 	}
 
-	for(int k=0,index;k<12;++k){
+	for(int k=0,index;k<16;++k){
 		t.clear();
 		for(int i=0;i<12;++i){
 			index=(k/4)*36 + (k%4)*3 + (i/3)*12 + (i%3);
@@ -111,12 +115,22 @@ int Sudoku::initialCheckUnity(void){
 				t.push_back(map[index]);
 			}
 		}
+	
+		t.push_back(0);
+		it=adjacent_find(t.begin(),t.end());
+		if(it !=t.end()){
+			cout<<"grid"<<endl;
+			return 0;
+		}
 	}
-	t.push_back(0);
-	it=adjacent_find(t.begin(),t.end());
-	if(it !=t.end()){
-		return 0;
+
+	for(int i=0;i<12;++i){
+		ylable[i].contain= ~ylable[i].contain;
+		xlable[i].contain= ~xlable[i].contain;
+		gridlable[i].contain= ~gridlable[i].contain;
 	}
+
+	return 1;
 }
 
 int Sudoku::getCountSolution(void){
