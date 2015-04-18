@@ -22,14 +22,15 @@ void Sudoku::ReadIn(void){
 
 void Sudoku::GiveQuestion(void){
 	
+	int NO,index,orivalue;
 	srand( time(NULL) );
+	NO=rand()%2;
 	for(int i=0;i<12;++i){
 		for(int j=0;j<12;j++){
-			map[j+12*i]=Map[i][j];
+			map[j+12*i]=Map[NO][i][j];
 		}
 	}
 	do{
-	int index,orivalue;
 	index=rand()%144;
 //	cout<<"index="<<index<<endl;
 	if(map[index]>0){
@@ -62,11 +63,11 @@ void Sudoku::GiveQuestion(void){
 
 void Sudoku::Solve(void){
 	if( ! initialCheckUnity() ){			//若無解
-		cout<<"init"<<endl;
+//		cout<<"init"<<endl;
 		cout<<getCountSolution()<<endl;
 		return;
 	}
-	cout<<"before"<<endl;
+//	cout<<"before"<<endl;
 	getAnswer();							//解算
 	cout<<getCountSolution()<<endl;			//print 多or一解
 	if(getCountSolution()==1){				//若唯一解，print答案
@@ -194,8 +195,8 @@ int Sudoku::solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<
 				tmpt=X[i%12].contain & Y[i/12].contain & G[(i/36)*4+((i%12)/3)].contain;
 
 				if( tmpt == 0 ){
-					cout<<"i="<<i<<"  "<<"tmpt=0"<<endl;
-					cout<<"X"<<X[i%12].contain<<" "<<"Y"<<Y[i/12].contain<<" "<<"G"<<G[(i/36)*4+((i%12)/3)].contain<<endl;
+//					cout<<"i="<<i<<"  "<<"tmpt=0"<<endl;
+//					cout<<"X"<<X[i%12].contain<<" "<<"Y"<<Y[i/12].contain<<" "<<"G"<<G[(i/36)*4+((i%12)/3)].contain<<endl;
 					return 0;
 				}
 
@@ -280,34 +281,24 @@ int Sudoku::solveMulti(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vecto
 
 
 
-/*
-void Sudoku::outOriginMap(void){
-	for(int j=0;j<144;++j){
-		cout<<map[j]<<" ";
-		if( j%12 == 11 ){
-			cout<<endl;
-		}
-	}
-}
-*/
 
-const int Sudoku::Map[12][12]=
+const int Sudoku::Map[2][12][12]=
 {
-/*	{
-	{ 4,2,6,8,7,3,9,5,1,-1,-1,-1},
-	{ 0,0,3,9,5,0,6,0,4,-1,-1,-1},
-	{ 9,0,1,6,2,4,8,0,0,-1,-1,-1},
-	{ -1,-1,-1,1,3,2,0,8,7,9,5,6},
-	{ -1,-1,-1,0,8,0,1,9,0,4,2,0},
-	{ -1,-1,-1,4,9,6,2,3,0,8,7,1},
-	{ 1,0,0,0,4,0,-1,-1,-1,6,9,5},
-	{ 0,0,4,0,6,0,-1,-1,-1,1,3,7},
-	{ 6,9,5,0,1,7,-1,-1,-1,2,8,4},
-	{ 3,1,2,-1,-1,-1,7,4,0,5,0,9},
-	{ 7,4,8,-1,-1,-1,0,6,9,3,0,2},
-	{ 0,6,0,-1,-1,-1,3,1,0,7,0,8},
-	}
-*/	
+	{
+	{ 5,7,3,6,2,1,-1,-1,-1,9,8,4},
+	{ 6,4,1,9,8,3,-1,-1,-1,5,7,2},
+	{ 9,8,2,5,4,7,-1,-1,-1,1,3,6},
+	{ -1,-1,-1,3,5,2,4,7,1,6,9,8},
+	{ -1,-1,-1,1,6,4,9,8,3,2,5,7},
+	{ -1,-1,-1,7,9,8,6,5,2,4,1,3},
+	{ 3,5,7,-1,-1,-1,2,1,4,8,6,9},
+	{ 1,6,4,-1,-1,-1,3,9,8,7,2,5},
+	{ 2,9,8,-1,-1,-1,5,6,7,3,4,1},
+	{ 7,3,5,2,1,6,8,4,9,-1,-1,-1},
+	{ 4,1,6,8,3,9,7,2,5,-1,-1,-1},
+	{ 8,2,9,4,7,5,1,3,6,-1,-1,-1},
+	},
+	{
 	{ 4,2,6,8,7,3,9,5,1,-1,-1,-1},
 	{ 8,7,3,9,5,1,6,2,4,-1,-1,-1},
 	{ 9,5,1,6,2,4,8,7,3,-1,-1,-1},
@@ -320,5 +311,5 @@ const int Sudoku::Map[12][12]=
 	{ 3,1,2,-1,-1,-1,7,4,8,5,6,9},
 	{ 7,4,8,-1,-1,-1,5,6,9,3,1,2},
 	{ 5,6,9,-1,-1,-1,3,1,2,7,4,8},
-	
+	}
 };

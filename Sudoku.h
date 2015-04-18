@@ -1,5 +1,5 @@
 #ifndef SUDOKU_H
-#define SUDOJU_H
+#define SUDOKU_H
 
 #include <iostream>
 #include<fstream>
@@ -22,7 +22,7 @@ class Sudoku{
 		void GiveQuestion(void);
 
 	private:
-		static const int Map[12][12];
+		static const int Map[2][12][12];
 		int initialCheckUnity(void);
 		int getCountSolution(void);
 		void getAnswer(void);
