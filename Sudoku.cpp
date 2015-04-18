@@ -29,21 +29,20 @@ void Sudoku::GiveQuestion(void){
 		}
 	}
 	do{
-//	srand( time(NULL) );
 	int index,orivalue;
 	index=rand()%144;
-	cout<<"index="<<index<<endl;
+//	cout<<"index="<<index<<endl;
 	if(map[index]>0){
 		orivalue = map[index];
 		map[index]= 0;
 		if(!initialCheckUnity()){
-			cout<<"無解"<<endl;
+//			cout<<"無解"<<endl;
 			map[index]=orivalue;
 			break;
 		}
 		getAnswer();
 		if(getCountSolution()!=1){
-			cout<<"非唯一"<<endl;
+//			cout<<"非唯一"<<endl;
 			map[index]=orivalue;
 			break;
 		}
