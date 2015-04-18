@@ -27,6 +27,8 @@ void Sudoku::GiveQuestion(void){
 	for(int j=0;j<12;++j){
 		for(int i=0;i<12;++i){
 			cout<<Map[index][j][i]<<" ";
+			if(Map[index][j][i] != -1)
+				cout<<" ";
 		}
 		cout<<endl;
 	}
@@ -34,9 +36,11 @@ void Sudoku::GiveQuestion(void){
 
 void Sudoku::Solve(void){
 	if( ! initialCheckUnity() ){			//若非唯一
+		cout<<"init"<<endl;
 		cout<<getCountSolution()<<endl;
 		return;
 	}
+	cout<<"before"<<endl;
 	getAnswer();							//解算
 	cout<<getCountSolution()<<endl;			//print 多or一解
 	if(getCountSolution()==1){				//若唯一解，print答案
@@ -108,7 +112,7 @@ int Sudoku::initialCheckUnity(void){
 
 	for(int k=0,index;k<16;++k){
 		t.clear();
-		for(int i=0;i<12;++i){
+		for(int i=0;i<9;++i){
 			index=(k/4)*36 + (k%4)*3 + (i/3)*12 + (i%3);
 			if( map[index] > 0 ){
 				gridlable[k].contain |=(0x0001<<(map[index]-1));
@@ -162,6 +166,8 @@ int Sudoku::solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<
 				tmpt=X[i%12].contain & Y[i/12].contain & G[(i/36)*4+((i%12)/3)].contain;
 
 				if( tmpt == 0 ){
+					cout<<"i="<<i<<"  "<<"tmpt=0"<<endl;
+					cout<<"X"<<X[i%12].contain<<" "<<"Y"<<Y[i/12].contain<<" "<<"G"<<G[(i/36)*4+((i%12)/3)].contain<<endl;
 					return 0;
 				}
 
