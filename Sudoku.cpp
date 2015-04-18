@@ -131,7 +131,9 @@ int Sudoku::initialCheckUnity(void){
 	for(int i=0;i<12;++i){
 		ylable[i].contain= ~ylable[i].contain;
 		xlable[i].contain= ~xlable[i].contain;
-		gridlable[i].contain= ~gridlable[i].contain;
+	}
+	for(int i=0;i<16;++i){
+	gridlable[i].contain= ~gridlable[i].contain;
 	}
 
 	return 1;
@@ -194,7 +196,7 @@ int Sudoku::solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<
 			return 1;//good answer output
 		}
 
-/*		if(check2==0){
+		if(check2==0){
 			if( solveMulti(Test,X,Y,G) ){
 				return 1;
 			}
@@ -202,7 +204,7 @@ int Sudoku::solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<
 				return 0;
 			}
 		}
-*/	}
+	}
 }
 
 
