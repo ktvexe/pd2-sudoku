@@ -137,8 +137,9 @@ int Sudoku::initialCheckUnity(void){
 		}
 	}
 
-	for(int k=0,index;k<16;++k){
+	for(int k=0;k<16;++k){
 		t.clear();
+		int index;
 		for(int i=0;i<9;++i){
 			index=(k/4)*36 + (k%4)*3 + (i/3)*12 + (i%3);
 			if( map[index] > 0 ){
