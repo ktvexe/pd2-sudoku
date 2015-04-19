@@ -22,7 +22,7 @@ class Sudoku{
 		void GiveQuestion(void);
 
 	private:
-		static const int Map[2][12][12];
+		static const int Map[10][12][12];
 		int initialCheckUnity(void);
 		int solcount(void);
 		void getans(void);
