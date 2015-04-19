@@ -1,0 +1,17 @@
+姓名：劉亮谷
+系級：資訊106
+學號：F64011279
+
+Programming environment:
+	server of pd2.imslab.org
+	about ubuntu 12.04
+
+description:
+	如同作業要求，class Sudoku中包含public member function(ReadIn,Solve,GiveQuestion),
+	使用上皆為stdin/out,GiveQuestion是先建立題庫，再將題庫挖洞，直到發現解不唯一時填回，
+	Solve則是建立一struct，指使用9個bits，目的是要check那些數字還沒有填，所以將1左移其
+	所抓到的數字數，最後再取其補數使0代表已填，1代表未填，存放其值的方式為vector(xlabel
+	、ylabel、gridlabel)，所以只要將三vector做AND，若發現其為0，則代表錯誤，最後即可解其
+	，使用solveOne()，開始填空格，若最後結果非唯一解可填時，會call solveMulti()猜一格，
+	再call solveOne()，如此進行recursive，而找到解時會使用multiAns<vector<int>>存下解，
+	若multiAns.size()超過1則代表多解，只需print 2，return。
