@@ -26,7 +26,6 @@ class Sudoku{
 		int initialCheckUnity(void);
 		int solcount(void);
 		void getans(void);
-//		void outOriginMap(void);
 		void outputans(void);
 		int solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<Pixel> G);
 		int solveMulti(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<Pixel> G);

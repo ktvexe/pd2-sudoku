@@ -32,18 +32,15 @@ void Sudoku::GiveQuestion(void){
 	}
 	do{
 	index=rand()%144;
-//	cout<<"index="<<index<<endl;
 	if(map[index]>0){
 		orivalue = map[index];
 		map[index]= 0;
 		if(!initialCheckUnity()){
-//			cout<<"無解"<<endl;
 			map[index]=orivalue;
 			break;
 		}
 		getans();
 		if(solcount()!=1){
-//			cout<<"非唯一"<<endl;
 			map[index]=orivalue;
 			break;
 		}
@@ -53,8 +50,6 @@ void Sudoku::GiveQuestion(void){
 	for(int i=0;i<12;++i){
 		for(int j=0;j<12;++j){
 			cout<<setw(3)<<map[j+i*12];
-//			if(map[j+i*12] != -1)
-//				cout<<" ";
 		}
 		cout<<endl;
 	}
@@ -63,11 +58,9 @@ void Sudoku::GiveQuestion(void){
 
 void Sudoku::Solve(void){
 	if( ! initialCheckUnity() ){			//若無解
-//		cout<<"init"<<endl;
 		cout<<solcount()<<endl;
 		return;
 	}
-//	cout<<"before"<<endl;
 	getans();							//解算
 	cout<<solcount()<<endl;			//print 多or一解
 	if(solcount()==1){				//若唯一解，print答案
@@ -196,8 +189,6 @@ int Sudoku::solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<
 				tmpt=X[i%12].contain & Y[i/12].contain & G[(i/36)*4+((i%12)/3)].contain;
 
 				if( tmpt == 0 ){
-//					cout<<"i="<<i<<"  "<<"tmpt=0"<<endl;
-//					cout<<"X"<<X[i%12].contain<<" "<<"Y"<<Y[i/12].contain<<" "<<"G"<<G[(i/36)*4+((i%12)/3)].contain<<endl;
 					return 0;
 				}
 
@@ -216,12 +207,12 @@ int Sudoku::solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<
 					G[(i/36)*4+((i%12)/3)].contain &= ~( 0x0001 << (t.at(0)-1) );
 				}
 
-			}//if(test[i]==0)
-		}//for(i<81)
+			}
+		}
 
 		if(check1==0){
 			multiAns.push_back(Test);
-			return 1;//good answer output
+			return 1;//great answer output
 		}
 
 		if(check2==0){
@@ -274,11 +265,11 @@ int Sudoku::solveMulti(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vecto
 
 			return 0;//guess all and failure
 
-		}//if(test[i]==0)
+		}
 
-	}//for(i<81)
+	}
 
-}//function end
+}
 
 
 
