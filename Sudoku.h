@@ -24,9 +24,9 @@ class Sudoku{
 	private:
 		static const int Map[2][12][12];
 		int initialCheckUnity(void);
-		int getCountSolution(void);
-		void getAnswer(void);
-		void outOriginMap(void);
+		int solcount(void);
+		void getans(void);
+//		void outOriginMap(void);
 		void outputans(void);
 		int solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<Pixel> G);
 		int solveMulti(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<Pixel> G);
@@ -35,7 +35,7 @@ class Sudoku{
 		vector<Pixel> ylable;
 		vector<Pixel> gridlable;
 		vector<int> map;
-		vector< vector<int> > multiAnswer;
+		vector< vector<int> > multiAns;
 
 };
 #endif

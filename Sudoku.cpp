@@ -41,14 +41,14 @@ void Sudoku::GiveQuestion(void){
 			map[index]=orivalue;
 			break;
 		}
-		getAnswer();
-		if(getCountSolution()!=1){
+		getans();
+		if(solcount()!=1){
 //			cout<<"非唯一"<<endl;
 			map[index]=orivalue;
 			break;
 		}
 	}
-	multiAnswer.clear();
+	multiAns.clear();
 	}while(1);
 	for(int i=0;i<12;++i){
 		for(int j=0;j<12;++j){
@@ -64,13 +64,13 @@ void Sudoku::GiveQuestion(void){
 void Sudoku::Solve(void){
 	if( ! initialCheckUnity() ){			//若無解
 //		cout<<"init"<<endl;
-		cout<<getCountSolution()<<endl;
+		cout<<solcount()<<endl;
 		return;
 	}
 //	cout<<"before"<<endl;
-	getAnswer();							//解算
-	cout<<getCountSolution()<<endl;			//print 多or一解
-	if(getCountSolution()==1){				//若唯一解，print答案
+	getans();							//解算
+	cout<<solcount()<<endl;			//print 多or一解
+	if(solcount()==1){				//若唯一解，print答案
 		outputans();
 	}
 	return;
@@ -78,12 +78,12 @@ void Sudoku::Solve(void){
 
 void Sudoku::outputans(void){
 
-	for(int k=0;k<multiAnswer.size();++k){
+	for(int k=0;k<multiAns.size();++k){
 		if(k==1){
 			cout<<endl;
 		}
 		for(int i=0;i<144;++i){
-			cout<<multiAnswer.at(k).at(i)<<" ";
+			cout<<multiAns.at(k).at(i)<<" ";
 			if( i%12 == 11 ){
 			cout<<endl;
 			}
@@ -166,12 +166,12 @@ int Sudoku::initialCheckUnity(void){
 	return 1;
 }
 
-int Sudoku::getCountSolution(void){
-	return multiAnswer.size();
+int Sudoku::solcount(void){
+	return multiAns.size();
 }
 
 
-void Sudoku::getAnswer(void){
+void Sudoku::getans(void){
 	solveOne(  map, xlable, ylable, gridlable );
 }
 
@@ -184,7 +184,7 @@ int Sudoku::solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<
 	unsigned int tmpt;
 	vector<int> t;
 
-	while(1){
+	do{
 
 		check1=0;
 		check2=0;
@@ -219,7 +219,7 @@ int Sudoku::solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<
 		}//for(i<81)
 
 		if(check1==0){
-			multiAnswer.push_back(Test);
+			multiAns.push_back(Test);
 			return 1;//good answer output
 		}
 
@@ -231,7 +231,7 @@ int Sudoku::solveOne(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vector<
 				return 0;
 			}
 		}
-	}
+	}while(1);
 }
 
 
@@ -261,7 +261,7 @@ int Sudoku::solveMulti(vector<int> Test, vector<Pixel> X, vector<Pixel> Y, vecto
 				G[(i/36)*4+((i%12)/3)].contain &= ~( 0x0001 << (t.at(k)-1) );
 
 				if( solveOne( Test, X, Y, G) == 1 ){
-					if( multiAnswer.size() > 1 ){
+					if( multiAns.size() > 1 ){
 						return 1;
 					}
 				}
