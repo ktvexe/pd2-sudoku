@@ -109,7 +109,6 @@ int Sudoku::initialCheckUnity(void){
 		t.push_back(0);
 		it=adjacent_find(t.begin(),t.end());
 		if( it != t.end() ){
-			cout<<"ylabel"<<endl;
 			return 0;
 		}
 	}
@@ -125,7 +124,6 @@ int Sudoku::initialCheckUnity(void){
 		t.push_back(0);
 		it=adjacent_find(t.begin(),t.end());
 		if( it != t.end() ){
-			cout<<"xlabel"<<endl;
 			return 0;
 		}
 	}
@@ -144,7 +142,6 @@ int Sudoku::initialCheckUnity(void){
 		t.push_back(0);
 		it=adjacent_find(t.begin(),t.end());
 		if(it !=t.end()){
-			cout<<"grid"<<endl;
 			return 0;
 		}
 	}
